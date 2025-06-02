@@ -1,6 +1,10 @@
 {
   "routes": [
     {
+      "route": "/elevate.html",
+      "allowedRoles": ["authenticated"]
+    },
+    {
       "route": "/api/*",
       "rewrite": "https://jitadmin-api.azurewebsites.net/api/*"
     }
@@ -8,6 +12,15 @@
   "responseOverrides": {
     "404": {
       "rewrite": "/index.html"
+    }
+  },
+  "auth": {
+    "identityProviders": {
+      "azureActiveDirectory": {
+        "registration": {
+          "openIdIssuer": "https://login.microsoftonline.com/38dee8b7-efbd-474b-8027-2acce53a746c/v2.0"
+        }
+      }
     }
   }
 }
