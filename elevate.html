@@ -8,7 +8,7 @@
       try {
         const res = await fetch("/.auth/me");
         const data = await res.json();
-        const user = data[0].userDetails;
+        const user = data.clientPrincipal?.userDetails || "Unknown";
         document.getElementById("user").innerText = user;
         document.getElementById("elevation").style.display = "block";
       } catch (err) {
@@ -18,7 +18,7 @@
 
     async function requestElevation() {
       document.getElementById("status").innerText = "Sending request...";
-      // Her tilføjes backend integration senere
+      // TODO: call backend here later
       setTimeout(() => {
         document.getElementById("status").innerText = "✅ Your request has been sent!";
         document.getElementById("requestBtn").disabled = true;
